@@ -11,6 +11,7 @@ using System.Net.Http;
 using System.Net;
 using Jaguar.Abstractions;
 using Jaguar.Data.Repositories;
+using Jaguar.Data;
 
 namespace Discord_Bot_Application.App_Start
 {
@@ -41,6 +42,8 @@ namespace Discord_Bot_Application.App_Start
                 .AddSingleton(_commands)
                 .AddSingleton<IMessageHandler, MessageHandler>()
                 .AddTransient<ILeagueApiRepository, LeagueEspnRepository>()
+                .AddTransient<ILeagueDbRepository, LeagueMongoRepository>()
+                .AddTransient<MongoDbConnection>()
                 .BuildServiceProvider();
 
             string botToken = Configuration.Instance.GetBySection("Discord", "Token");
