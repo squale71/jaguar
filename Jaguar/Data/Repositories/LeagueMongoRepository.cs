@@ -32,18 +32,6 @@ namespace Jaguar.Data.Repositories
                 Builders<League>.Filter.Where(p => p.Year == year));
 
             return await collection.Find(filter).FirstOrDefaultAsync();
-
-
-            //var filterDefinition = new FilterDefinitionBuilder<League>().Eq(x => x.Id, id);
-            //using (IAsyncCursor<League> cursor = await collection.FindAsync<League>(filterDefinition))
-            //{
-            //    while (await cursor.MoveNextAsync())
-            //    {
-            //        theLeague = cursor.Current.FirstOrDefault();
-            //    }
-            //}
-
-            //return theLeague;
         }
     }
 }
