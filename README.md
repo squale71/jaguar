@@ -1,4 +1,4 @@
-# Discord-Bot-Template
+# Jaguar
 A discord bot for NFL Fantasy Football as well as Pick 'Em.
 
 # Discord Set Up
