@@ -9,3 +9,4 @@ services:
     environment:
       DISCORDBOT_Discord__Token: ${DISCORDBOT_Discord__Token}
       ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT}
+      DISCORDBOT_Espn__Cookie: ${DISCORDBOT_Espn__Cookie}

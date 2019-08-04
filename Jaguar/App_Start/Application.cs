@@ -7,6 +7,8 @@ using System;
 using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
+using System.Net.Http;
+using System.Net;
 
 namespace Discord_Bot_Application.App_Start
 {
@@ -46,7 +48,8 @@ namespace Discord_Bot_Application.App_Start
             await _client.LoginAsync(TokenType.Bot, botToken);
 
             await _client.StartAsync();
-            await Task.Delay(-1);
+
+            await Task.Delay(-1);          
         }
 
         private Task Log(LogMessage arg)
