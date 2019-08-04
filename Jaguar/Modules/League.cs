@@ -1,29 +1,30 @@
 ﻿using Discord.Commands;
-using Discord_Bot_Application.App_Start;
-using System;
-using System.Net.Http;
+using Jaguar.Abstractions;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Jaguar.Modules
 {
+    /// <summary>
+    /// The league module. Fetches data given a specific league.
+    /// </summary>
     public class League : ModuleBase<SocketCommandContext>
     {
+        private readonly ILeagueApiRepository _leagueApiRepository;
+
+        public League(ILeagueApiRepository leagueApiRepository)
+        {
+            _leagueApiRepository = leagueApiRepository;
+        }
+
         [Command("league")]
         public async Task LeagueAsync()
         {
-            var baseAddress = new Uri("http://fantasy.espn.com/apis/v3/games/ffl/seasons");
-            using (var handler = new HttpClientHandler())
-            using (var client = new HttpClient(handler) { BaseAddress = baseAddress })
-            {
-                client.DefaultRequestHeaders.Add("Cookie", Configuration.Instance.GetBySection("Espn", "Cookie"));
-                var result = await client.GetAsync("http://fantasy.espn.com/apis/v3/games/ffl/seasons/2019/segments/0/leagues/228841");
+            var res = await _leagueApiRepository.GetLeague(2019, 228841);
 
-                result.EnsureSuccessStatusCode();
+            var list = string.Join(", ", res.Teams.Select(x => x.Nickname));
 
-                var res = await result.Content.ReadAsStringAsync();
-
-                await ReplyAsync(res.Substring(0, 1999));
-            }
+            await ReplyAsync(list);
         }
     }
 }
