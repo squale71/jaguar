@@ -1,0 +1,11 @@
+version: '3.4'
+
+services:
+  discordbotapplication:
+    image: ${DOCKER_REGISTRY-}jaguar
+    build:
+      context: .
+      dockerfile: Jaguar/Dockerfile
+    environment:
+      DISCORDBOT_Discord__Token: ${DISCORDBOT_Discord__Token}
+      ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT}
