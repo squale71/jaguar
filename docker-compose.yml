@@ -6,7 +6,14 @@ services:
     build:
       context: .
       dockerfile: Jaguar/Dockerfile
+    depends_on:
+      - mongo
     environment:
       DISCORDBOT_Discord__Token: ${DISCORDBOT_Discord__Token}
       ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT}
       DISCORDBOT_Espn__Cookie: ${DISCORDBOT_Espn__Cookie}
+      DISCORDBOT_ConnectionStrings__MongoDB: ${DISCORDBOT_ConnectionStrings__MongoDB}
+  mongo:
+    image: mongo
+    ports:
+    - "27017:27017"
