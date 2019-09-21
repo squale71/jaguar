@@ -10,7 +10,7 @@ services:
       - mongo
     environment:
       DISCORDBOT_Discord__Token: ${DISCORDBOT_Discord__Token}
-      ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT}
+      ASPNETCORE_ENVIRONMENT: 'Development'
       DISCORDBOT_Espn__Cookie: ${DISCORDBOT_Espn__Cookie}
       DISCORDBOT_ConnectionStrings__MongoDB: ${DISCORDBOT_ConnectionStrings__MongoDB}
   mongo:
